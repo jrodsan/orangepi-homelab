@@ -1,43 +1,49 @@
-# Orange Pi 4 Pro Homelab
+# 🍊 Orange Pi 4 Pro Homelab
 
-A reproducible Docker-based homelab running on an Orange Pi 4 Pro with Debian.
+A reproducible Docker-based homelab running on an **Orange Pi 4 Pro** with **Debian**.
 
-The goal of this repository is to make rebuilding the server as simple as possible after a fresh OS installation.
+The main goal of this project is to make my server easy to rebuild after a fresh OS installation. By keeping every Docker Compose stack under version control and storing persistent data on a dedicated HDD, I can restore my homelab quickly and reliably.
 
-## Current services
+This repository documents the evolution of my self-hosted infrastructure as I continue adding services and improving the setup.
 
-| Service | Status |
-|----------|--------|
-| Jellyfin | ✅ |
-| qBittorrent | ✅ |
-| Navidrome | ✅ |
-| Pi-hole | ✅ |
+---
+
+# 🚀 Services
+
+| Service     |          Status          |
+| ----------- | :----------------------: |
+| Jellyfin    |         ✅ Running        |
+| qBittorrent |         ✅ Running        |
+| Navidrome   |         ✅ Running        |
+| Pi-hole     |         ✅ Running        |
+| Ghost       | 🚧 Migration in progress |
+| VPN         | 🚧 Migration in progress |
 
 More services will be added over time.
 
 ---
 
-## Project structure
+# 📂 Repository Structure
 
-```
+```text
 stacks/
 ```
 
-Contains every Docker Compose stack.
+Docker Compose files for each service.
 
-```
+```text
 appdata/
 ```
 
-Contains persistent application data.
+Persistent application data stored on the HDD.
 
-**appdata is intentionally NOT part of this repository.**
+> **Note:** `appdata` is intentionally excluded from this repository because it contains user data and service configuration.
 
 ---
 
-## Storage layout
+# 💾 Storage Layout
 
-```
+```text
 /mnt/media
 ├── docker
 │   ├── appdata
@@ -50,47 +56,77 @@ Contains persistent application data.
 
 ---
 
-## Deploy
+# 🛠 Deployment
 
-Clone the repository.
+Clone the repository:
 
 ```bash
-git clone https://github.com/jrodsan/orangepi-homelab
+git clone git@github.com:jrodsan/orangepi-homelab.git
 ```
 
-Navigate to a stack.
+Go to the desired stack:
 
 ```bash
 cd stacks/jellyfin
 ```
 
-Start the service.
+Start the service:
 
 ```bash
 docker compose up -d
 ```
 
----
+Some services require additional environment variables. Copy the example file before starting the stack:
 
-## Philosophy
+```bash
+cp .env.example .env
+```
 
-- Simple
-- Reproducible
-- Easy to maintain
-- No Docker GUI
-- Configuration stored on HDD instead of the SD card
+Then edit the `.env` file with your own values.
 
 ---
 
-## Hardware
+# 🎯 Project Goals
 
-- Orange Pi 4 Pro
-- Debian
-- Docker
-- Docker Compose
+* Build a reproducible homelab.
+* Store persistent data on the HDD instead of the SD card.
+* Keep every Docker Compose stack under version control.
+* Avoid unnecessary complexity.
+* Document the infrastructure as it evolves.
 
 ---
 
-## License
+# 🗺 Roadmap
 
-MIT
+## Infrastructure
+
+* [x] Move Docker data from the SD card to the HDD.
+* [x] Organize Docker Compose stacks.
+* [x] Version control the infrastructure with GitHub.
+* [ ] Document every service.
+* [ ] Automate backups.
+* [ ] Add monitoring.
+* [ ] Automatic container updates.
+
+## Future Services
+
+* [ ] Finish Ghost migration.
+* [ ] Finish Tinc VPN migration.
+* [ ] Homepage Dashboard.
+* [ ] Immich.
+
+---
+
+# 🖥 Hardware
+
+* Orange Pi 4 Pro
+* Debian
+* Docker
+* Docker Compose
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
