@@ -53,6 +53,28 @@ Persistent application data stored on the HDD.
 ├── music
 └── series
 ```
+## 🏗 Architecture
+
+```text
+                Internet
+                    │
+                    ▼
+          Orange Pi 4 Pro (Debian)
+                    │
+        ┌───────────┴───────────┐
+        │                       │
+    Docker Engine         Persistent Data
+        │                  (/mnt/media/docker/appdata)
+        │
+        ├── Jellyfin
+        ├── qBittorrent
+        ├── Navidrome
+        ├── Pi-hole
+        ├── Ghost (WIP)
+        └── Tinc VPN (WIP)
+```
+
+All media libraries and application data are stored on the HDD, while only the operating system remains on the SD card. This approach reduces SD card wear and makes the server easier to recover after a fresh installation.
 
 ---
 
